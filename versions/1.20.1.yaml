@@ -1,0 +1,106 @@
+# Grammar table for Minecraft: Java Edition 1.20.1 (mc-command-testbed).
+#
+# One file per supported version: adding a version means adding one file here and
+# nothing else. The lint in src/versions.js reads these keys:
+#   version                 the version this table describes
+#   java                    the Java version the official server jar needs
+#   gamerule_aliases        names that differ between versions
+#   item_component_syntax   data component syntax (items) available or not
+#
+# Sources: Minecraft Wiki, "Game rule" (Java Edition history, 25w44a: every game
+# rule was renamed to a snake_case resource location) and "Java Edition 1.20.5"
+# (data components for items).
+version: "1.20.1"
+java: 17
+gamerule_naming: camel_case
+gamerule_aliases:
+  - name: advance_time
+    here: doDaylightCycle
+    because: "renamed to a snake_case resource location in 1.21.11 (24w44a/25w44a)"
+  - name: advance_weather
+    here: doWeatherCycle
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: show_advancement_messages
+    here: announceAdvancements
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: command_blocks_work
+    here: commandBlocksEnabled
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: max_block_modifications
+    here: command_modification_block_limit
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: elytra_movement_check
+    here: disableElytraMovementCheck
+    because: "renamed to a snake_case resource location in 1.21.11; the value is inverted"
+  - name: player_movement_check
+    here: disablePlayerMovementCheck
+    because: "renamed to a snake_case resource location in 1.21.11; the value is inverted"
+  - name: raids
+    here: disableRaids
+    because: "renamed to a snake_case resource location in 1.21.11; the value is inverted"
+  - name: entity_drops
+    here: doEntityDrops
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: immediate_respawn
+    here: doImmediateRespawn
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: spawn_phantoms
+    here: doInsomnia
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: limited_crafting
+    here: doLimitedCrafting
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: mob_drops
+    here: doMobLoot
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: spawn_mobs
+    here: doMobSpawning
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: spawn_patrols
+    here: doPatrolSpawning
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: block_drops
+    here: doTileDrops
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: spawn_wandering_traders
+    here: doTraderSpawning
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: spread_vines
+    here: doVinesSpread
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: spawn_wardens
+    here: doWardenSpawning
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: max_command_sequence_length
+    here: maxCommandChainLength
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: max_command_forks
+    here: maxCommandForkCount
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: natural_health_regeneration
+    here: naturalRegeneration
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: max_snow_accumulation_height
+    here: snowAccumulationHeight
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: respawn_radius
+    here: spawnRadius
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: random_tick_speed
+    here: randomTickSpeed
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: max_entity_cramming
+    here: maxEntityCramming
+    because: "renamed to a snake_case resource location in 1.21.11"
+item_component_syntax: false
+item_components_because: "the [...] component syntax after an item id exists from 1.20.5; before that use the NBT form minecraft:diamond{...}"
+gamerule_missing:
+  - name: fire_spread_radius_around_player
+    because: "added in 1.21.11 (25w44a)"
+  - name: spawner_blocks_work
+    because: "added in 1.21.9 (25w37a) as spawnerBlocksEnabled"
+  - name: pvp
+    because: "added as a game rule in 1.21.9 (25w35a); before that pvp is a server property"
+notes:
+  - "First version the tool was asked to support (owner ticket, 2026-10-25)."
+  - "Minecraft 1.20.2 already moved item ids to the new registry and dropped most namespaces, so treat anything older than 1.20.1 as untested."

@@ -1,0 +1,11 @@
+line  as     step                                   result  time  output
+----  -----  -------------------------------------  ------  ----  --------------------------------------------------
+4     Alice  scoreboard objectives add pts dummy    PASS    82ms  Created new objective [pts]
+5     Alice  scoreboard players add @s pts 1        PASS    67ms  Added 1 to [pts] for Alice (now 1)
+6     Alice  this_is_not_a_command foo              FAIL    77ms  Unknown or incomplete command. See below for er...
+8     Bob    scoreboard players add @s pts 1        PASS    76ms  Added 1 to [pts] for Bob (now 1)
+9     -      #@ assert if score Bob pts matches 99  FAIL    9ms   Test failed
+12    Bob    scoreboard players get Nobody pts      PASS    66ms  Can't get value of pts for Nobody; none is set
+
+4/6 steps passed, 2 failed (script lines: 6, 9)
+test run: 0.4s  (server start: 10.1s, players joined: 2.0s, total: 13.7s)

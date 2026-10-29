@@ -1,0 +1,40 @@
+name: ci
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      e2e:
+        description: 'Also run the real-server test (downloads server.jar from Mojang; by running it you accept https://aka.ms/MinecraftEULA)'
+        type: boolean
+        default: false
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+  e2e:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.e2e }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Every version with a grammar table in versions/ gets a real server run.
+        version: [1.20.1, 1.21.11]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 21 }
+      - run: npm ci
+      - run: npm test
+        env:
+          MCTESTBED_E2E: '1'
+          MCTESTBED_ACCEPT_EULA: '1'
+          MCTESTBED_E2E_VERSIONS: ${{ matrix.version }}

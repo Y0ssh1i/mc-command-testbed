@@ -1,0 +1,38 @@
+line  as       step                                            result  time   output
+----  -------  ----------------------------------------------  ------  -----  --------------------------------------------------
+5     console  scoreboard objectives add pts dummy             PASS    9ms    Created new objective [pts]
+6     console  scoreboard players set Alice pts 0              PASS    17ms   Set [pts] for Alice to 0
+7     console  scoreboard players set Bob pts 0                PASS    1ms    Set [pts] for Bob to 0
+8     console  scoreboard players set Carol pts 0              PASS    0ms    Set [pts] for Carol to 0
+9     console  gamerule advance_time false                     PASS    2ms    Gamerule advance_time is now set to: false
+13    Alice    give @s minecraft:diamond 3                     PASS    106ms  Alice has made the advancement [Diamonds!] / Ga...
+14    Alice    scoreboard players add @s pts 5                 PASS    76ms   Added 5 to [pts] for Alice (now 5)
+15    -        #@ expect Alice /Added 5 to \[pts\]/            PASS    0ms    Added 5 to [pts] for Alice (now 5)
+16    Alice    tag @s add red_team                             PASS    105ms  Added tag 'red_team' to Alice
+19    Bob      scoreboard players add @s pts 2                 PASS    63ms   Added 2 to [pts] for Bob (now 2)
+20    Bob      tag @s add blue_team                            PASS    77ms   Added tag 'blue_team' to Bob
+23    Carol    scoreboard players add @s pts 7                 PASS    77ms   Added 7 to [pts] for Carol (now 7)
+24    Carol    tag @s add blue_team                            PASS    64ms   Added tag 'blue_team' to Carol
+28    console  setblock ~ ~ ~ minecraft:gold_block             PASS    9ms    Changed the block at 0, -60, 0
+29    console  summon minecraft:zombie ~3 ~ ~ {NoAI:1b,Tag...  PASS    12ms   Summoned new Zombie
+30    -        #@ wait 500ms                                   PASS    515ms
+33    -        #@ assert if score Alice pts matches 5          PASS    2ms    Test passed
+34    -        #@ assert if score Bob pts matches 2            PASS    0ms    Test passed
+35    -        #@ assert if score Carol pts matches 7          PASS    0ms    Test passed
+36    -        #@ assert if entity @a[tag=blue_team]           PASS    1ms    Test passed. Count: 2
+37    -        #@ assert if entity @e[type=minecraft:zombi...  PASS    1ms    Test passed. Count: 1
+38    -        #@ assert unless entity @a[tag=green_team]      PASS    0ms    Test passed
+39    -        #@ show scores                                  PASS    6ms    4 line(s) below
+40    -        #@ show entity @a[tag=blue_team]                PASS    0ms    1 line(s) below
+
+24/24 steps passed, 0 failed
+test run: 1.1s  (server start: 8.8s, players joined: 2.1s, total: 13.1s)
+
+[show scores] (line 39)
+  objectives: pts
+  Carol: pts=7
+  Bob: pts=2
+  Alice: pts=5
+
+[show entity @a[tag=blue_team]] (line 40)
+  @a[tag=blue_team] -> 2

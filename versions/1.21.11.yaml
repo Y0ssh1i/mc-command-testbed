@@ -1,0 +1,104 @@
+# Grammar table for Minecraft: Java Edition 1.21.11 (mc-command-testbed).
+#
+# Same file format as versions/1.20.1.yaml; adding a version means adding one file.
+#
+# Sources: Minecraft Wiki, "Game rule" (Java Edition history: 25w44a moved every
+# game rule into a registry and renamed them to snake_case resource locations,
+# 25w45a changed the max entity cramming minimum to 0) and "Java Edition 1.20.5"
+# (data components for items).
+version: "1.21.11"
+java: 21
+gamerule_naming: snake_case
+gamerule_aliases:
+  - name: doDaylightCycle
+    here: advance_time
+    because: "renamed to a snake_case resource location in 1.21.11 (25w44a)"
+  - name: doWeatherCycle
+    here: advance_weather
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: announceAdvancements
+    here: show_advancement_messages
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: commandBlocksEnabled
+    here: command_blocks_work
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: command_modification_block_limit
+    here: max_block_modifications
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: disableElytraMovementCheck
+    here: elytra_movement_check
+    because: "renamed to a snake_case resource location in 1.21.11; the value is inverted"
+  - name: disablePlayerMovementCheck
+    here: player_movement_check
+    because: "renamed to a snake_case resource location in 1.21.11; the value is inverted"
+  - name: disableRaids
+    here: raids
+    because: "renamed to a snake_case resource location in 1.21.11; the value is inverted"
+  - name: doEntityDrops
+    here: entity_drops
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: doImmediateRespawn
+    here: immediate_respawn
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: doInsomnia
+    here: spawn_phantoms
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: doLimitedCrafting
+    here: limited_crafting
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: doMobLoot
+    here: mob_drops
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: doMobSpawning
+    here: spawn_mobs
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: doPatrolSpawning
+    here: spawn_patrols
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: doTileDrops
+    here: block_drops
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: doTraderSpawning
+    here: spawn_wandering_traders
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: doVinesSpread
+    here: spread_vines
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: doWardenSpawning
+    here: spawn_wardens
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: maxCommandChainLength
+    here: max_command_sequence_length
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: maxCommandForkCount
+    here: max_command_forks
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: naturalRegeneration
+    here: natural_health_regeneration
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: snowAccumulationHeight
+    here: max_snow_accumulation_height
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: spawnRadius
+    here: respawn_radius
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: randomTickSpeed
+    here: random_tick_speed
+    because: "renamed to a snake_case resource location in 1.21.11"
+  - name: maxEntityCramming
+    here: max_entity_cramming
+    because: "renamed to a snake_case resource location in 1.21.11"
+item_component_syntax: true
+item_components_because: "the [...] component syntax after an item id exists from 1.20.5; before that use the NBT form minecraft:diamond{...}"
+gamerule_missing:
+  - name: doFireTick
+    because: "removed in 1.21.11 (25w44a); fire spread is now fire_spread_radius_around_player"
+  - name: allowFireTicksAwayFromPlayer
+    because: "added in 1.21.5 and removed again in 1.21.11 (25w44a)"
+  - name: spawnChunkRadius
+    because: "removed in 1.21.9 (25w31a)"
+  - name: entitiesWithPassengersCanUsePortals
+    because: "removed in 1.21 (24w21a); passengers use portals by default"
+notes:
+  - "Default version of the tool. Game rules are namespaced resource locations here, and the old camelCase names fail."
+  - "This version's server jar needs Java 21."
